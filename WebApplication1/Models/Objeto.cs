@@ -7,7 +7,7 @@ namespace WebApplication1.Models
     public class Objeto
     {
         [Key]
-        public int Id { get; set; }
+        public int IdObjeto { get; set; }
 
         [Required (ErrorMessage ="O Nome do Objeto é obrigatório")]
         public string Nome { get; set; }
@@ -20,10 +20,8 @@ namespace WebApplication1.Models
 
         [Required]
         public CategoriaEnum Categoria {  get; set; }
-
-        [Required]
-        [ForeignKey("Usuario")]
+         [ForeignKey("Usuario")]
          public int UsuarioId { get; set; }
-         public Usuario? Usuario { get; set; }
+         public virtual Usuario Usuario { get; set; }
     }
 }

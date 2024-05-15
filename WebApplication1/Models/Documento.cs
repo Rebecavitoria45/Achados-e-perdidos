@@ -7,7 +7,7 @@ namespace WebApplication1.Models
     public class Documento
     {
         [Key]
-        public int Id { get; set; }
+        public int IdDocumento { get; set; }
         [Required]
         public string TipoDocumento { get; set; }
         [Required]
@@ -18,7 +18,7 @@ namespace WebApplication1.Models
         public EstadoEnum EstadoDocumento { get; set; }
         [ForeignKey("UsuarioId")]
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set;}
+        public virtual Usuario Usuario { get; set;}
 
 
     }
