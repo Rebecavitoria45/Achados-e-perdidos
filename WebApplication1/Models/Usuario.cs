@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace WebApplication1.Models
 {
@@ -12,7 +13,7 @@ namespace WebApplication1.Models
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido...")]
         public string Email { get; set; }
         public int Telefone { get; set; }
-        public ICollection<Objeto> Objetos { get; set; }
-        public ICollection<Documento> Documentos { get; set; }   
+       
+        
    }
 }
