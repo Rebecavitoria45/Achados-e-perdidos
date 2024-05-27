@@ -82,7 +82,7 @@ namespace WebApplication1.Services
                 return resposta;
             }
           }
-       public async Task<ResponseModel<Usuario>>AtualizarUsuario(int Id, UsuarioDto usuarioDto)
+        public async Task<ResponseModel<Usuario>>AtualizarUsuario(int Id, UsuarioDto usuarioDto)
         {
             ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
             try
@@ -108,6 +108,27 @@ namespace WebApplication1.Services
                 return resposta;
             }
        }
+        public async Task<ResponseModel<Usuario>>BuscarUsuarioPorId(int Id)
+        {
+            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
+            try
+            {
+              var usuario = await _context.Usuarios.FirstOrDefaultAsync(usuario=> usuario.IdUsuario== Id);
+              if (usuario == null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado";
+                    return resposta;
+                }
+              resposta.Dados= usuario;
+              return resposta;
+            }catch(Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+
+            }
+        }
 
     }
 }

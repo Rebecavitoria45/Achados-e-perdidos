@@ -29,6 +29,7 @@ namespace WebApplication1.Controllers
             var Usuario = await _usuarioService.CriarUsuario(usuarioDto);
             return Ok(Usuario);
         }
+        
         [HttpDelete("/DeletarUsuario/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>> DeletarUsuario(int id)
         {
@@ -42,5 +43,13 @@ namespace WebApplication1.Controllers
             var atualizar = await _usuarioService.AtualizarUsuario(id, usuarioDto);
             return Ok(atualizar);
         }
+
+        [HttpGet("/BuscarUsuarioPorId/{id}")]
+        public async Task<ActionResult<ResponseModel<Usuario>>>BuscarUsuarioPorId(int id)
+        {
+            var usuario = await _usuarioService.BuscarUsuarioPorId(id);
+            return Ok(usuario); 
+        }
+
     }
 }
