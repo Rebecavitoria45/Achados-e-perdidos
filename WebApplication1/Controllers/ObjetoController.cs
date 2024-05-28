@@ -15,31 +15,51 @@ namespace WebApplication1.Controllers
         {
             _objetoService = objetoService;
         }
-        [HttpGet("/ListarObjetos")]
+        /// <summary>
+        /// Lista todos Objetos
+        ///</summary>
+        /// <response code="200">Retorna uma lista de objetos.</response>
+        [HttpGet("/Objetos")]
         public async Task<ActionResult<ResponseModel<List<Objeto>>>> ListaObjetos()
         {
             var objetos = await _objetoService.ListarObjetos();
             return Ok(objetos);
         }
-        [HttpPost("/CriarObjeto")]
+        /// <summary>
+        /// Cadastra Objeto
+        ///</summary>
+        /// <response code="200">Retorna objeto cadastrado.</response>
+        [HttpPost("/Objetos")]
         public async Task<ActionResult<ResponseModel<Objeto>>> CriarObjeto(ObjetoDto objetoDto)
         {
             var objeto = await _objetoService.CriarObjeto(objetoDto);
             return Ok(objeto);
         }
-        [HttpDelete("/DeletarObjeto/{id}")]
+        /// <summary>
+        /// Deleta objeto pelo id
+        ///</summary>
+        /// <response code="200">Retorna mensagem de sucesso caso objeto seja deletado.</response>
+        [HttpDelete("/Objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> DeletarObjeto(int id)
         {
             var objeto = await  _objetoService.DeletarObjeto(id);
             return Ok(objeto);
         }
-        [HttpPut("/AtualizarObjeto/{id}")]
+        /// <summary>
+        /// Atualiza objeto
+        ///</summary>
+        /// <response code="200">Retorna objeto atualizado.</response>
+        [HttpPut("/Objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> AtualizarObjeto(int id, ObjetoDto objetoDto)
         {
             var objeto = await _objetoService.AtualizarObjeto(id, objetoDto);
             return Ok(objeto);
         }
-        [HttpGet("/BuscarPorId/{id}")]
+        /// <summary>
+        /// Busca objeto pelo id
+        ///</summary>
+        /// <response code="200">Retorna o objeto do id correspondente.</response>
+        [HttpGet("/Objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> BuscarPorId(int id)
         {
             var objeto = await _objetoService.BuscarObjetoPorId(id);

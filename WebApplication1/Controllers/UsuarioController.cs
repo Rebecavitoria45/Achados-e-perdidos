@@ -15,36 +15,51 @@ namespace WebApplication1.Controllers
         {
             _usuarioService = usuarioService;
         }
-
-        [HttpGet]
+        /// <summary>
+        /// Lista todos Usuários
+        ///</summary>
+        /// <response code="200">Retorna uma lista de usuários.</response>
+        [HttpGet("/Usuarios")]
         public async Task<ActionResult<ResponseModel<List<Usuario>>>>ListaUsuarios()
         {
             var usuarios = await _usuarioService.ListarUsuarios();
             return Ok(usuarios);
         }
-        
-        [HttpPost("/CadastrarUsuario")]
+        /// <summary>
+        /// Cadastra Usuário
+        ///</summary>
+        /// <response code="200">Retorna o Usuário que foi cadastrado</response>
+        [HttpPost("/Usuarios")]
         public async Task<ActionResult<ResponseModel<Usuario>>> CriarUsuario(UsuarioDto usuarioDto)
         {
             var Usuario = await _usuarioService.CriarUsuario(usuarioDto);
             return Ok(Usuario);
         }
-        
-        [HttpDelete("/DeletarUsuario/{id}")]
+        /// <summary>
+        /// Deleta usuário pelo id
+        ///</summary>
+        /// <response code="200">Retorna mensagem de sucesso caso usuário seja deletado.</response>
+        [HttpDelete("/Usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>> DeletarUsuario(int id)
         {
             var deletar = await _usuarioService.DeletarUsuario(id);
             return Ok(deletar);
         }
-
-        [HttpPut("/AtualizarUsuario/{id}")]
+        /// <summary>
+        /// Atualiza Usuário
+        ///</summary>
+        /// <response code="200">Retorna o usuário atualizado.</response>
+        [HttpPut("/Usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>> AtualizarUsuario(int id, UsuarioDto usuarioDto)
         {
             var atualizar = await _usuarioService.AtualizarUsuario(id, usuarioDto);
             return Ok(atualizar);
         }
-
-        [HttpGet("/BuscarUsuarioPorId/{id}")]
+        /// <summary>
+        /// Busca usuário pelo id
+        ///</summary>
+        /// <response code="200">Retorna usuário do id correspondente.</response>
+        [HttpGet("/Usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>>BuscarUsuarioPorId(int id)
         {
             var usuario = await _usuarioService.BuscarUsuarioPorId(id);
