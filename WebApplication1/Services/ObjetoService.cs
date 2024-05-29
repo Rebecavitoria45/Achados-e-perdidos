@@ -19,7 +19,9 @@ namespace WebApplication1.Services
             ResponseModel<List<Objeto>> resposta = new ResponseModel<List<Objeto>>();
             try
             {
-               var objetos = await _context.Objetos.ToListAsync();
+               var objetos = await _context.Objetos
+                    .Include(u => u.Usuario)
+                    .ToListAsync();
                 if(objetos.IsNullOrEmpty())
                 {
                     resposta.Mensagem = "Nenhum Objeto encontrado";
@@ -148,6 +150,31 @@ namespace WebApplication1.Services
                 resposta.Dados = objeto;
                 return resposta;   
             }catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+        public async Task<ResponseModel<List<Objeto>>> BuscarObjetoPorUsuario(int idusuario)
+        {
+            ResponseModel<List<Objeto>> resposta = new ResponseModel<List<Objeto>>();
+            try
+            {
+                var objetos = await _context.Objetos
+                    //.Include(u => u.Usuario)
+                    .Where(objeto => objeto.Usuario.IdUsuario == idusuario)
+                    .ToListAsync();
+                if (objetos.IsNullOrEmpty())
+                {
+                    resposta.Mensagem = "Nenhum Objeto cadastrado";
+                    resposta.Status = false;
+                    return resposta;
+                }
+                resposta.Dados = objetos;
+                return resposta;
+            }
+            catch (Exception ex)
             {
                 resposta.Mensagem = ex.Message;
                 resposta.Status = false;

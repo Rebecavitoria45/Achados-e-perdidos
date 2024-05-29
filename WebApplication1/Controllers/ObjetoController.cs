@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
         /// Lista todos Objetos
         ///</summary>
         /// <response code="200">Retorna uma lista de objetos.</response>
-        [HttpGet("/Objetos")]
+        [HttpGet("/objetos")]
         public async Task<ActionResult<ResponseModel<List<Objeto>>>> ListaObjetos()
         {
             var objetos = await _objetoService.ListarObjetos();
@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
         /// Cadastra Objeto
         ///</summary>
         /// <response code="200">Retorna objeto cadastrado.</response>
-        [HttpPost("/Objetos")]
+        [HttpPost("/objetos")]
         public async Task<ActionResult<ResponseModel<Objeto>>> CriarObjeto(ObjetoDto objetoDto)
         {
             var objeto = await _objetoService.CriarObjeto(objetoDto);
@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
         /// Deleta objeto pelo id
         ///</summary>
         /// <response code="200">Retorna mensagem de sucesso caso objeto seja deletado.</response>
-        [HttpDelete("/Objetos/{id}")]
+        [HttpDelete("/objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> DeletarObjeto(int id)
         {
             var objeto = await  _objetoService.DeletarObjeto(id);
@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
         /// Atualiza objeto
         ///</summary>
         /// <response code="200">Retorna objeto atualizado.</response>
-        [HttpPut("/Objetos/{id}")]
+        [HttpPut("/objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> AtualizarObjeto(int id, ObjetoDto objetoDto)
         {
             var objeto = await _objetoService.AtualizarObjeto(id, objetoDto);
@@ -59,11 +59,23 @@ namespace WebApplication1.Controllers
         /// Busca objeto pelo id
         ///</summary>
         /// <response code="200">Retorna o objeto do id correspondente.</response>
-        [HttpGet("/Objetos/{id}")]
+        [HttpGet("/objetos/{id}")]
         public async Task<ActionResult<ResponseModel<Objeto>>> BuscarPorId(int id)
         {
             var objeto = await _objetoService.BuscarObjetoPorId(id);
             return Ok(objeto);
         }
+        /// <summary>
+        /// Busca objetos pelo id do usuario 
+        ///</summary>
+        /// <response code="200">Retorna uma lista de objetos pelo id do usuário que cadastrou.</response>
+        [HttpGet("/usuarios/objetos/{idusuario}")]
+        public async Task<ActionResult<ResponseModel<List<Objeto>>>> BuscarObjetoPorUsuario(int idusuario)
+        {
+            var objetos = await _objetoService.BuscarObjetoPorUsuario(idusuario);
+            return Ok(objetos);
+        }
     }
 }
+    
+

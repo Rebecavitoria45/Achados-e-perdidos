@@ -19,7 +19,9 @@ namespace WebApplication1.Services
             ResponseModel<List<Documento>> resposta = new ResponseModel<List<Documento>>();
             try
             {
-                var documentos = await _context.Documentos.ToListAsync();
+                var documentos = await _context.Documentos
+                    .Include(u => u.Usuario)
+                    .ToListAsync();
                 if (documentos.IsNullOrEmpty())
                 {
                     resposta.Mensagem = "Nenhum documento cadastrado";
@@ -149,6 +151,30 @@ namespace WebApplication1.Services
             catch (Exception ex)
             {
                 resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+        public async Task<ResponseModel<List<Documento>>>BuscarDocumentosPorUsuario (int idusuario)
+        {
+            ResponseModel<List<Documento>> resposta = new ResponseModel<List<Documento>>();
+            try
+            {
+                var documentos = await _context.Documentos
+                  //.Include(u => u.Usuario)
+                    .Where(documento => documento.Usuario.IdUsuario == idusuario)
+                    .ToListAsync();
+               if(documentos.IsNullOrEmpty()) 
+                {
+                    resposta.Mensagem = "Nenhum documento cadastrado";
+                    resposta.Status = false;
+                    return resposta;
+                }
+                resposta.Dados= documentos;
+                return resposta;
+            }catch (Exception ex) 
+            {
+                resposta.Mensagem= ex.Message;
                 resposta.Status = false;
                 return resposta;
             }
