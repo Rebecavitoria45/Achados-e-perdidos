@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Database;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
 using WebApplication1.Services;
@@ -11,10 +13,11 @@ namespace WebApplication1.Controllers
     public class UsuarioController : ControllerBase
     {
         private  UsuarioService _usuarioService;
-        public UsuarioController(UsuarioService usuarioService)
-        {
+         public UsuarioController(UsuarioService usuarioService)
+       {
             _usuarioService = usuarioService;
         }
+       
         /// <summary>
         /// Lista todos Usuários
         ///</summary>
@@ -66,5 +69,19 @@ namespace WebApplication1.Controllers
             return Ok(usuario); 
         }
 
+        /// <summary>
+        /// Atualiza apenas parte do usuário.
+        ///</summary>
+        /// <response code="200">Retorna o usuário atualizado.</response>
+        [HttpPatch("/usuarios/{id}")]
+        public async Task<ActionResult<ResponseModel<Usuario>>> AtualizarPartesUsuario(int id, [FromBody] JsonPatchDocument<Usuario> patchDoc)
+        {
+            var usuario= await _usuarioService.AtualizarPartesUsuario(id, patchDoc, ModelState);
+            return Ok(usuario);
+        }
+        
+
     }
+
 }
+

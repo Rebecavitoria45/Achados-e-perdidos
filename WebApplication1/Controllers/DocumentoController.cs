@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
@@ -76,6 +77,17 @@ namespace WebApplication1.Controllers
         {
             var documentos = await _documentoService.BuscarDocumentosPorUsuario(idusuario);
             return Ok(documentos);
+        }
+
+        /// <summary>
+        /// Atualiza apenas parte do documento.
+        ///</summary>
+        /// <response code="200">Retorna o documento atualizado.</response>
+        [HttpPatch("/documentos/{id}")]
+        public async Task<ActionResult<ResponseModel<Documento>>> AtualizarPartesDocumento(int id, [FromBody] JsonPatchDocument<Documento> patchDoc)
+        {
+            var documento = await _documentoService.AtualizarPartesDocumento(id, patchDoc, ModelState);
+            return Ok(documento);
         }
     }
 }

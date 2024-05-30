@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Database;
 using WebApplication1.Dtos;
@@ -179,5 +182,44 @@ namespace WebApplication1.Services
                 return resposta;
             }
         }
+        public async Task<ResponseModel<Documento>> AtualizarPartesDocumento(int id, JsonPatchDocument<Documento> patchDoc, ModelStateDictionary modelState)
+        {
+            ResponseModel<Documento> resposta = new ResponseModel<Documento>();
+            try
+            {
+                if (patchDoc == null)
+                {
+                    resposta.Status = false;
+                    resposta.Mensagem = "Atributo não identificado";
+                    return resposta;
+                }
+
+                var documento = await _context.Documentos.FirstOrDefaultAsync(d => d.IdDocumento == id);
+                if (documento == null)
+                {
+                    resposta.Status = false;
+                    resposta.Mensagem = "Nenhum documento encontrado";
+                    return resposta;
+                }
+
+                patchDoc.ApplyTo(documento, modelState);
+                await _context.SaveChangesAsync();
+
+                if (!modelState.IsValid)
+                {
+                    resposta.Mensagem = "Operação invalida";
+                    return resposta;
+                }
+                resposta.Dados = documento;
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+
     }
 }

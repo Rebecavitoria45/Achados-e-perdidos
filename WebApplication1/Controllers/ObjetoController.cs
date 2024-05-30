@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
@@ -75,6 +76,18 @@ namespace WebApplication1.Controllers
             var objetos = await _objetoService.BuscarObjetoPorUsuario(idusuario);
             return Ok(objetos);
         }
+        /// <summary>
+        /// Atualiza apenas parte do objeto.
+        ///</summary>
+        /// <response code="200">Retorna o objeto atualizado.</response>
+        [HttpPatch("/objetos/{id}")]
+        public async Task<ActionResult<ResponseModel<Objeto>>> AtualizarPartesUsuario(int id, [FromBody] JsonPatchDocument<Objeto> patchDoc)
+        {
+            var objeto = await _objetoService.AtualizarPartesObjeto(id, patchDoc, ModelState);
+            return Ok(objeto);
+        }
+
+
     }
 }
     
