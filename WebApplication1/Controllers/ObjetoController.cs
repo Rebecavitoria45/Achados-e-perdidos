@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
             return Ok(objeto);
         }
         /// <summary>
-        /// Atualiza objeto
+        /// Edita objeto inteiro
         ///</summary>
         /// <response code="200">Retorna objeto atualizado.</response>
         [HttpPut("/objetos/{id}")]
@@ -77,7 +77,7 @@ namespace WebApplication1.Controllers
             return Ok(objetos);
         }
         /// <summary>
-        /// Atualiza apenas parte do objeto.
+        /// Edita apenas parte do objeto.
         ///</summary>
         /// <response code="200">Retorna o objeto atualizado.</response>
         [HttpPatch("/objetos/{id}")]

@@ -7,6 +7,7 @@ using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
+   
     [Route("api/[controller]")]
     [ApiController]
     public class DocumentoController : ControllerBase
@@ -59,7 +60,7 @@ namespace WebApplication1.Controllers
 
         }
         /// <summary>
-        /// Atualiza documento
+        /// Edita documento inteiro
         ///</summary>
         /// <response code="200">Retorna o documento atualizado.</response>
         [HttpPut("/documentos/{id}")]
@@ -80,7 +81,7 @@ namespace WebApplication1.Controllers
         }
 
         /// <summary>
-        /// Atualiza apenas parte do documento.
+        /// Edita apenas parte do documento.
         ///</summary>
         /// <response code="200">Retorna o documento atualizado.</response>
         [HttpPatch("/documentos/{id}")]

@@ -16,7 +16,7 @@ namespace WebApplication1.Models
 
         [Required(ErrorMessage ="A descrição do objeto é obrigatória")]
         [StringLength(255)]
-        public string Descrição { get; set; }
+        public string Descricao { get; set; }
 
         [Required]
         public CategoriaEnum Categoria {  get; set; }

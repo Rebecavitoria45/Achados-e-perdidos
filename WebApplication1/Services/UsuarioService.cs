@@ -25,6 +25,7 @@ namespace WebApplication1.Services
                 if (usuarios.IsNullOrEmpty())
                 {
                     resposta.Mensagem = "Nenhum usuário cadastrado";
+                    resposta.Status =false;
                     return resposta;
                 }
                 resposta.Dados = usuarios;
@@ -71,6 +72,7 @@ namespace WebApplication1.Services
                  if(usuario == null)
                 {
                     resposta.Mensagem = "Usuário não encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 _context.Usuarios.Remove(usuario);
@@ -94,6 +96,7 @@ namespace WebApplication1.Services
                 if (usuario == null)
                 {
                     resposta.Mensagem = "Nenhum usuário encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 usuario.Nome = usuarioDto.Nome;
@@ -120,6 +123,7 @@ namespace WebApplication1.Services
               if (usuario == null)
                 {
                     resposta.Mensagem = "Usuário não encontrado";
+                    resposta.Status= false;
                     return resposta;
                 }
               resposta.Dados= usuario;
@@ -140,7 +144,7 @@ namespace WebApplication1.Services
                 if (patchDoc == null)
                 {
                     resposta.Status = false;
-                    resposta.Mensagem = "Atributo não identificado";
+                    resposta.Mensagem = "solicitação invalida ou nula";
                     return resposta;
                 }
 

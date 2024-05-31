@@ -28,6 +28,7 @@ namespace WebApplication1.Services
                 if (documentos.IsNullOrEmpty())
                 {
                     resposta.Mensagem = "Nenhum documento cadastrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 resposta.Dados = documentos;
@@ -50,6 +51,7 @@ namespace WebApplication1.Services
                 if (documento == null)
                 {
                     resposta.Mensagem = "Nenhum documento encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 resposta.Dados = documento;
@@ -104,6 +106,7 @@ namespace WebApplication1.Services
                 if (documento == null)
                 {
                     resposta.Mensagem = "Documento não encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 _context.Documentos.Remove(documento);
@@ -128,6 +131,7 @@ namespace WebApplication1.Services
                 if (documento == null)
                 {
                     resposta.Mensagem = "Documento não encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 documento.TipoDocumento = DocumentoDto.TipoDocumento;
@@ -190,7 +194,7 @@ namespace WebApplication1.Services
                 if (patchDoc == null)
                 {
                     resposta.Status = false;
-                    resposta.Mensagem = "Atributo não identificado";
+                    resposta.Mensagem = "solicitação invalida ou nula";
                     return resposta;
                 }
 

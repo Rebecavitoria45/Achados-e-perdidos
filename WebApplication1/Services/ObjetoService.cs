@@ -28,6 +28,7 @@ namespace WebApplication1.Services
                 if(objetos.IsNullOrEmpty())
                 {
                     resposta.Mensagem = "Nenhum Objeto encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 resposta.Dados = objetos;   
@@ -49,7 +50,7 @@ namespace WebApplication1.Services
                     Nome = objetoDto.Nome,
                     FotoObjeto = objetoDto.FotoObjeto,
                     Ativo = objetoDto.Ativo,
-                    Descrição = objetoDto.Descrição,
+                    Descricao = objetoDto.Descricao,
                     Categoria = objetoDto.Categoria,
                     UsuarioId = objetoDto.UsuarioId,
                 };
@@ -84,7 +85,7 @@ namespace WebApplication1.Services
                 if(Objeto == null)
                 {
                     resposta.Mensagem = "Nenhum Objeto encontrado com esse id";
-                    
+                    resposta.Status = false;
                     return resposta;
                 }
                  _context.Objetos.Remove(Objeto);  
@@ -108,12 +109,13 @@ namespace WebApplication1.Services
                 if (objeto == null)
                 {
                     resposta.Mensagem = "Objeto não encontrado";
+                    resposta.Status = false;
                     return resposta;
                 }
                 objeto.Nome = ObjetoDto.Nome;
                 objeto.FotoObjeto = ObjetoDto.FotoObjeto;
                 objeto.Ativo = ObjetoDto.Ativo;
-                objeto.Descrição = ObjetoDto.Descrição;
+                objeto.Descricao = ObjetoDto.Descricao;
                 objeto.Categoria = ObjetoDto.Categoria;
                 objeto.UsuarioId = ObjetoDto.UsuarioId;
                 if (Enum.IsDefined(typeof(CategoriaEnum), objeto.Categoria))

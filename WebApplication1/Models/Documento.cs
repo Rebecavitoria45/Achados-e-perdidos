@@ -4,6 +4,7 @@ using WebApplication1.Enuns;
 
 namespace WebApplication1.Models
 {
+    
     public class Documento
     {
         [Key]

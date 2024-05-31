@@ -9,7 +9,7 @@ namespace WebApplication1.Dtos
         public string Nome { get; set; }
         public string FotoObjeto { get; set; }
         public bool Ativo { get; set; } = true;
-        public string Descrição { get; set; }
+        public string Descricao { get; set; }
         public CategoriaEnum Categoria { get; set; }
         public int UsuarioId { get; set; }
     }

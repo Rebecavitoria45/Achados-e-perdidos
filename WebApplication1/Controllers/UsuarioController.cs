@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
             return Ok(deletar);
         }
         /// <summary>
-        /// Atualiza Usuário
+        /// Edita Usuário inteiro
         ///</summary>
         /// <response code="200">Retorna o usuário atualizado.</response>
         [HttpPut("/usuarios/{id}")]
@@ -70,7 +70,7 @@ namespace WebApplication1.Controllers
         }
 
         /// <summary>
-        /// Atualiza apenas parte do usuário.
+        /// Edita apenas parte do usuário.
         ///</summary>
         /// <response code="200">Retorna o usuário atualizado.</response>
         [HttpPatch("/usuarios/{id}")]
