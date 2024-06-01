@@ -75,7 +75,7 @@
     "status": true
 }
 ```
-### Obeservações
+## Observações
  Exemplo de Body para o método Patch (Atualiza parcialmente)
  ```json
   [
