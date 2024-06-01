@@ -76,7 +76,7 @@
 }
 ```
 ### Obeservações
- Exemplo de Body para o método Patch (Modifica um ou vários atributos especificados)
+ Exemplo de Body para o método Patch (Atualiza parcialmente)
  ```json
   [
   {
@@ -117,7 +117,10 @@ Utilizei uma Response Model para padronizar o formato dos retornos
   ```
  dotnet run 
  ```
-
+## Contato
+   ### Autora: Rebeca vitória
+   ### Email: bebecavitoria4738@gmail.com
+   ### Linkedin: https://www.linkedin.com/in/rebecavitoriadev/
 
 
        
