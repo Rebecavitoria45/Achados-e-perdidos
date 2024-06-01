@@ -21,10 +21,11 @@
 ![tela inicial](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/e6a9029a-674b-4d7d-8b7b-cce61fcb43d2)
 ## Principais Recursos
  ### Usuários
-   <p> Permite Cadastrar, Listar, Excluir e editar os usuários</p>
+   <p> Permite Cadastrar, Listar, Excluir e editar os usuários.</p>
    
-   ![Captura de tela 2024-05-31 203233](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/d919dcd6-1398-4ed5-ac88-ee1af8965aad)
-   Exemplo de Retorno do método Get (Busca por id do usuário):
+![usuario](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/e197e536-8e90-41e8-98c0-312e8b6c7d11)
+
+   Exemplo de Retorno do método Get (Busca usuário pelo id):
   ```json
  {
     "dados": {
@@ -38,5 +39,90 @@
 }
 ```
 ### Objetos
+<p> Permite Cadastrar, Listar, Excluir e editar Objetos, além de buscar objetos cadastrados por um usuário. </p>
+
+![objeto](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/373ba661-4072-41ea-9fda-c2d0411ed8c4)
+  Exemplo do Body para o método Post:
+  ```json
+  {
+  "nome": "string",
+  "fotoObjeto": "string",
+  "ativo": true,
+  "descrição": "string",
+  "categoria": "Perdido",
+  "usuarioId": 0
+}
+```
+### Documentos
+<p> Permite Cadastrar, Listar, Excluir e editar Documentos, além de buscar documentos cadastrados por um usuário. </p>
+
+![documento](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/deebcd3e-7b72-4f89-a9ba-1b7d34d4afa2)
+  Exemplo de Retorno do método Get (Busca documentos pelo id do usuário):
+   ```json
+    {
+    "dados": [
+        {
+            "idDocumento": 3,
+            "tipoDocumento": "Rg",
+            "numeroDocumento": "23456795809",
+            "nomeCompletoDocumento": "Luan alvez",
+            "estadoDocumento": "Amapá",
+            "usuarioId": 5,
+            "usuario": null
+        }
+    ],
+    "mensagem": "",
+    "status": true
+}
+```
+### Obeservações
+ Exemplo de Body para o método Patch (Modifica um ou vários atributos especificados)
+ ```json
+  [
+  {
+    "operationType": "Replace",
+    "path": "Nome",
+    "op": "replace",
+    "from": "string",
+    "value": "Rebeca Vitória"
+  }
+]
+```
+Utilizei uma Response Model para padronizar o formato dos retornos
+```json
+{
+    "dados": null,
+    "mensagem": "",
+    "status": true
+}
+```
+## Instalação
+  1.Clone o repósitorio </br>
+ ```
+ git clone https://github.com/Rebecavitoria45/Achados-e-perdidos
+  cd Achados-e-perdidos 
+```
+ 2.Configure a string de conexão do banco de dados no arquivo appsettings.json: </br>
+   ```
+  { 
+  "ConnectionStrings": { 
+    "DefaultConnection": "Server=.;Database=LostAndFound;Trusted_Connection=True;MultipleActiveResultSets=true" 
+  },
+ ```
+  3.Execute as migrações do banco de dados: </br>
+   ```
+    dotnet ef database update
+ ```
+ 4.Inicie o servidor:
+  ```
+ dotnet run 
+ ```
+
+
+
+       
+
+
+
 
   
