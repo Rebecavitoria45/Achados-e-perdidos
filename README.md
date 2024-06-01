@@ -48,7 +48,7 @@
   "nome": "string",
   "fotoObjeto": "string",
   "ativo": true,
-  "descrição": "string",
+  "descricao": "string",
   "categoria": "Perdido",
   "usuarioId": 0
 }
