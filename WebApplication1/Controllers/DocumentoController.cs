@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
         /// Lista todos Documentos
         ///</summary>
         /// <response code="200">Retorna uma lista de Documentos.</response>
-        [HttpGet("/documentos")]
+        [HttpGet("/api/documentos")]
         public async Task<ActionResult<ResponseModel<List<Documento>>>> ListarDocumentos()
         {
             var documentos = await _documentoService.ListarDocumentos();
@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
         /// Busca documento pelo id
         ///</summary>
         /// <response code="200">Retorna o documento do id correspondente.</response>
-        [HttpGet("/documentos/{id}")]
+        [HttpGet("/api/documentos/{id}")]
         public async Task<ActionResult<ResponseModel<Documento>>> BuscarDocumentoPorId(int id)
         {
             var documento = await _documentoService.BuscarDocumentoPorId(id);
@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
         ///Cadastra documento
         ///</summary>
         /// <response code="200">Retorna  documento cadastrado.</response>
-        [HttpPost("/documentos")]
+        [HttpPost("/api/documentos")]
         public async Task<ActionResult<ResponseModel<Documento>>> CriarDocumento(DocumentoDto documentoDto)
         {
             var documento = await _documentoService.CriarDocumento(documentoDto);
@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
         /// Deleta documento pelo id
         ///</summary>
         /// <response code="200">Retorna mensagem de sucesso caso documento seja deletado.</response>
-        [HttpDelete("/documentos/{id}")]
+        [HttpDelete("/api/documentos/{id}")]
         public async Task<ActionResult<ResponseModel<Documento>>> DeletarDocumento(int id)
         {
             var documento = await _documentoService.DeletarDocumento(id);
@@ -63,7 +63,7 @@ namespace WebApplication1.Controllers
         /// Edita documento inteiro
         ///</summary>
         /// <response code="200">Retorna o documento atualizado.</response>
-        [HttpPut("/documentos/{id}")]
+        [HttpPut("/api/documentos/{id}")]
         public async Task<ActionResult<ResponseModel<Documento>>> AtualizarDocumento(int id, DocumentoDto documentoDto)
         {
             var documento = await _documentoService.AtualizarDocumento(id, documentoDto);
@@ -73,22 +73,13 @@ namespace WebApplication1.Controllers
         /// Busca documentos pelo id do usuario 
         ///</summary>
         /// <response code="200">Retorna uma lista de documentos pelo id do usuário que cadastrou.</response>
-        [HttpGet("/usuarios/documentos/{idusuario}")]
+        [HttpGet("/api/usuarios/documentos/{idusuario}")]
         public async Task<ActionResult<ResponseModel<List<Documento>>>> BuscarDocumentoPorUsuario(int idusuario)
         {
             var documentos = await _documentoService.BuscarDocumentosPorUsuario(idusuario);
             return Ok(documentos);
         }
 
-        /// <summary>
-        /// Edita apenas parte do documento.
-        ///</summary>
-        /// <response code="200">Retorna o documento atualizado.</response>
-        [HttpPatch("/documentos/{id}")]
-        public async Task<ActionResult<ResponseModel<Documento>>> AtualizarPartesDocumento(int id, [FromBody] JsonPatchDocument<Documento> patchDoc)
-        {
-            var documento = await _documentoService.AtualizarPartesDocumento(id, patchDoc, ModelState);
-            return Ok(documento);
-        }
+       
     }
 }

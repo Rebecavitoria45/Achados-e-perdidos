@@ -46,7 +46,8 @@ namespace WebApplication1.Services
                 {
                     Nome = UsuarioDto.Nome,
                     Email = UsuarioDto.Email,
-                    Telefone = UsuarioDto.Telefone
+                    Telefone = UsuarioDto.Telefone,
+                    Senha = UsuarioDto.Senha,
                 };
                 _context.Usuarios.Add(usuario);
                 await _context.SaveChangesAsync();
@@ -102,6 +103,7 @@ namespace WebApplication1.Services
                 usuario.Nome = usuarioDto.Nome;
                 usuario.Email = usuarioDto.Email;
                 usuario.Telefone = usuarioDto.Telefone;
+                usuario.Senha = usuarioDto.Senha;
                 _context.Usuarios.Update(usuario);
                 await _context.SaveChangesAsync();
                 resposta.Mensagem = "Usuário atualizado com sucesso";
@@ -136,43 +138,15 @@ namespace WebApplication1.Services
 
             }
         }
-        public async Task<ResponseModel<Usuario>>AtualizarPartesUsuario(int id, JsonPatchDocument<Usuario> patchDoc, ModelStateDictionary modelState)
+       
+        public async Task<Usuario> LoginUsuario(LoginDto loginDto)
         {
-            ResponseModel<Usuario>resposta = new ResponseModel<Usuario>();
-            try
+            var usuario = await  _context.Usuarios.Where(x=> x.Email.Equals(loginDto.Email) && x.Senha.Equals(loginDto.Senha)).FirstOrDefaultAsync();
+            if(usuario == null)
             {
-                if (patchDoc == null)
-                {
-                    resposta.Status = false;
-                    resposta.Mensagem = "solicitação invalida ou nula";
-                    return resposta;
-                }
-
-                var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.IdUsuario == id);
-                if (usuario == null)
-                {
-                    resposta.Status = false;
-                    resposta.Mensagem = "Nenhum usuário encontrado";
-                    return resposta;
-                }
-
-                patchDoc.ApplyTo(usuario, modelState);
-                await _context.SaveChangesAsync();
-
-                if (!modelState.IsValid)
-                {
-                    resposta.Mensagem = "Operação invalida";
-                    return resposta;
-                }
-                resposta.Dados = usuario;
-                return resposta;
+                return null;
             }
-            catch (Exception ex)
-            {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-                return resposta;
-            }
+            return usuario;
         }
         
         

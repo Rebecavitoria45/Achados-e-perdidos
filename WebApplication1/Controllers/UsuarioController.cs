@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
         /// Lista todos Usuários
         ///</summary>
         /// <response code="200">Retorna uma lista de usuários.</response>
-        [HttpGet("/usuarios")]
+        [HttpGet("/api/usuarios")]
         public async Task<ActionResult<ResponseModel<List<Usuario>>>>ListaUsuarios()
         {
             var usuarios = await _usuarioService.ListarUsuarios();
@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
         /// Cadastra Usuário
         ///</summary>
         /// <response code="200">Retorna o Usuário que foi cadastrado</response>
-        [HttpPost("/usuarios")]
+        [HttpPost("/api/usuarios")]
         public async Task<ActionResult<ResponseModel<Usuario>>> CriarUsuario(UsuarioDto usuarioDto)
         {
             var Usuario = await _usuarioService.CriarUsuario(usuarioDto);
@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
         /// Deleta usuário pelo id
         ///</summary>
         /// <response code="200">Retorna mensagem de sucesso caso usuário seja deletado.</response>
-        [HttpDelete("/usuarios/{id}")]
+        [HttpDelete("/api/usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>> DeletarUsuario(int id)
         {
             var deletar = await _usuarioService.DeletarUsuario(id);
@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
         /// Edita Usuário inteiro
         ///</summary>
         /// <response code="200">Retorna o usuário atualizado.</response>
-        [HttpPut("/usuarios/{id}")]
+        [HttpPut("/api/usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>> AtualizarUsuario(int id, UsuarioDto usuarioDto)
         {
             var atualizar = await _usuarioService.AtualizarUsuario(id, usuarioDto);
@@ -62,24 +62,24 @@ namespace WebApplication1.Controllers
         /// Busca usuário pelo id
         ///</summary>
         /// <response code="200">Retorna usuário do id correspondente.</response>
-        [HttpGet("/usuarios/{id}")]
+        [HttpGet("/api/usuarios/{id}")]
         public async Task<ActionResult<ResponseModel<Usuario>>>BuscarUsuarioPorId(int id)
         {
             var usuario = await _usuarioService.BuscarUsuarioPorId(id);
             return Ok(usuario); 
         }
 
-        /// <summary>
-        /// Edita apenas parte do usuário.
-        ///</summary>
-        /// <response code="200">Retorna o usuário atualizado.</response>
-        [HttpPatch("/usuarios/{id}")]
-        public async Task<ActionResult<ResponseModel<Usuario>>> AtualizarPartesUsuario(int id, [FromBody] JsonPatchDocument<Usuario> patchDoc)
+       
+        [HttpPost("/api/usuarios/login")]
+        public async Task<ActionResult>FazerLogin(LoginDto loginDto)
         {
-            var usuario= await _usuarioService.AtualizarPartesUsuario(id, patchDoc, ModelState);
-            return Ok(usuario);
+            var usuario = await _usuarioService.LoginUsuario(loginDto) ;
+            if(usuario == null)
+            {
+                return Unauthorized(new { message = "Email ou senha incorretos" });
+            }
+            return Ok(new { usuarioId = usuario.IdUsuario });
         }
-        
 
     }
 

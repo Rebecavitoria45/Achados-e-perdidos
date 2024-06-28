@@ -12,6 +12,8 @@ namespace WebApplication1.Models
         [Required]
         public string Email { get; set; }
         public int Telefone { get; set; }
+        [Required]
+        public string Senha { get; set; }
        
         
    }

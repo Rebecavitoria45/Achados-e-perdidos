@@ -186,44 +186,6 @@ namespace WebApplication1.Services
                 return resposta;
             }
         }
-        public async Task<ResponseModel<Documento>> AtualizarPartesDocumento(int id, JsonPatchDocument<Documento> patchDoc, ModelStateDictionary modelState)
-        {
-            ResponseModel<Documento> resposta = new ResponseModel<Documento>();
-            try
-            {
-                if (patchDoc == null)
-                {
-                    resposta.Status = false;
-                    resposta.Mensagem = "solicitação invalida ou nula";
-                    return resposta;
-                }
-
-                var documento = await _context.Documentos.FirstOrDefaultAsync(d => d.IdDocumento == id);
-                if (documento == null)
-                {
-                    resposta.Status = false;
-                    resposta.Mensagem = "Nenhum documento encontrado";
-                    return resposta;
-                }
-
-                patchDoc.ApplyTo(documento, modelState);
-                await _context.SaveChangesAsync();
-
-                if (!modelState.IsValid)
-                {
-                    resposta.Mensagem = "Operação invalida";
-                    return resposta;
-                }
-                resposta.Dados = documento;
-                return resposta;
-            }
-            catch (Exception ex)
-            {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-                return resposta;
-            }
-        }
-
+       
     }
 }
