@@ -76,18 +76,6 @@
 }
 ```
 ## Observações
- Exemplo de Body para o método Patch (Atualiza parcialmente)
- ```json
-  [
-  {
-    "operationType": "Replace",
-    "path": "Nome",
-    "op": "replace",
-    "from": "string",
-    "value": "Rebeca Vitória"
-  }
-]
-```
 Utilizei uma Response Model para padronizar o formato dos retornos
 ```json
 {
