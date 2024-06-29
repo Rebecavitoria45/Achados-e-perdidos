@@ -3,7 +3,7 @@
    <span>Achados e Perdidos-API👜👒</span>
 </h1>
 
-## Tecnologias Usadas 👩‍💻
+## Tecnologias Usadas - Backend 👩‍💻
 [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)](https://docs.github.com/)
 [![Git](https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git&logoColor=E94D5F)](https://git-scm.com/doc)
 [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://git-scm.com/doc)
@@ -23,7 +23,7 @@
  ### Usuários
    <p> Permite Cadastrar, Listar, Excluir e editar os usuários.</p>
    
-![usuario](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/e197e536-8e90-41e8-98c0-312e8b6c7d11)
+![image](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/fe7e9701-d3bb-4276-b862-34a52174a82b)
 
    Exemplo de Retorno do método Get (Busca usuário pelo id):
   ```json
@@ -41,7 +41,7 @@
 ### Objetos
 <p> Permite Cadastrar, Listar, Excluir e editar Objetos, além de buscar objetos cadastrados por um usuário. </p>
 
-![objeto](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/373ba661-4072-41ea-9fda-c2d0411ed8c4)
+![image](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/bcd68662-4be3-407e-b2af-63bf1f8c423c)
   Exemplo do Body para o método Post:
   ```json
   {
@@ -56,8 +56,8 @@
 ### Documentos
 <p> Permite Cadastrar, Listar, Excluir e editar Documentos, além de buscar documentos cadastrados por um usuário. </p>
 
-![documento](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/deebcd3e-7b72-4f89-a9ba-1b7d34d4afa2)
-  Exemplo de Retorno do método Get (Busca documentos pelo id do usuário):
+![image](https://github.com/Rebecavitoria45/Achados-e-perdidos/assets/117654851/115a17e3-0074-4a0a-b9ee-27aab62765b1)
+ Exemplo de Retorno do método Get (Busca documentos pelo id do usuário):
    ```json
     {
     "dados": [
